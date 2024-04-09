@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:test/core/constants/colors.dart';
-import 'package:test/home_page.dart';
+import 'package:test/splash/constants/colors.dart';
+import 'package:test/splash/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -14,8 +14,8 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(const Duration(seconds: 7), () {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => MyHomePage()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MyHomePage()));
     });
   }
 
@@ -24,9 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       body: Container(
-        
         height: MediaQuery.of(context).size.height,
-        child: Image.asset('assests/spaceX.gif',fit: BoxFit.fitHeight,),
+        child: Image.asset(
+          'assests/spaceX.gif',
+          fit: BoxFit.fitHeight,
+        ),
       ),
     );
   }
