@@ -45,7 +45,6 @@ shipContainer(BuildContext context,
             boxShadow: const [
               BoxShadow(
                 color: Colors.blueGrey,
-                spreadRadius: -5.0,
                 blurRadius: 10.0,
               ),
             ],
