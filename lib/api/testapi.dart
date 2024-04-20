@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
         title: Text('SpaceX Company Info'),
       ),
       body: Center(
-        child: FutureBuilder<CompanyInfo>(
+        child: FutureBuilder<CompanyInfo?>(
           future: getCompanyInfo(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -18,11 +18,11 @@ class HomePage extends StatelessWidget {
               return Column(
                 children: [
                   Text(
-  companyInfo.name ?? 'Company Name Unavailable',  // Use default value if null
-  style: TextStyle(fontSize: 24.0),
-),
-                  // Text(companyInfo.name, style: TextStyle(fontSize: 24.0)),
-                  Text('CEO: ${companyInfo.ceo}'),
+                    companyInfo.name ?? 'Company Name Unavailable',
+                    style: TextStyle(fontSize: 24.0),
+                  ),
+                  Text('CEO: ${companyInfo.ceo ?? 'N/A'}'),
+                  Text('Founded: ${companyInfo.foundedYear ?? 'Unknown'}'),
                   // ... Add more widgets to display other info
                 ],
               );
