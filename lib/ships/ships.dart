@@ -53,10 +53,10 @@ shipContainer(BuildContext context,
         child: Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
             child: Text(
               shipName,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),

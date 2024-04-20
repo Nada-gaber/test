@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:test/api/testapi.dart';
 import 'package:test/splash/constants/colors.dart';
 import 'package:test/splash/home_page.dart';
 
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(const Duration(seconds: 7), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => MyHomePage()));
+          MaterialPageRoute(builder: (context) => HomePage()));
     });
   }
 
