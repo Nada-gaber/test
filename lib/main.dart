@@ -3,18 +3,18 @@ import 'package:test/api/api_service.dart';
 import 'package:test/api/testapi.dart';
 import 'package:test/ships/ships.dart';
 
-void main() async {
-  try {
-    final companyInfo = await getCompanyInfo();
-    print(companyInfo.name);  // Print company name
+void main()  {
+  // try {async
+  //   final companyInfo = await getCompanyInfo();
+  //   print(companyInfo.name);  // Print company name
 
-    final ships = await getShips();
-    for (final ship in ships) {
-      print(ship.name);  // Print ship names
-    }
-  } on Exception catch (error) {
-    print('Error: $error');
-  }
+  //   final ships = await getShips();
+  //   for (final ship in ships) {
+  //     print(ship.name);  // Print ship names
+  //   }
+  // } on Exception catch (error) {
+  //   print('Error: $error');
+  // }
   runApp( MyApp());
 }
 
