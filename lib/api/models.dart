@@ -1,103 +1,103 @@
 class CompanyInfo {
   final String? name;
   final String? ceo;
+  final int? foundedYear;
   final int? employees;
   final String? launchVehicles;
   final String? headquarters;
-  final Links links;
+  final Links? links;
 
   CompanyInfo({
-    required this.name,
-    required this.ceo,
-    required this.employees,
-    required this.launchVehicles,
-    required this.headquarters,
-    required this.links,
+    this.name,
+    this.ceo,
+    this.foundedYear,
+    this.employees,
+    this.launchVehicles,
+    this.headquarters,
+    this.links,
   });
 
+  factory CompanyInfo.fromJson(Map<String, dynamic> data) => CompanyInfo(
+        name: data['name'] as String?,
+        ceo: data['ceo'] as String?,
+        foundedYear: data['foundedYear'] as int?,
+        employees: data['employees'] as int?,
+        launchVehicles: data['launchVehicles'] as String?,
+        headquarters: data['hq_location'] as String?,  // Assuming 'hq_location' is the correct key
+        links: Links.fromJson(data['links'] as Map<String, dynamic>?),
+      );
+
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'ceo': ceo,
-    'employees': employees,
-    'launchVehicles': launchVehicles,
-    'headquarters': headquarters,
-    'links': links.toJson(),
-  };
-
-
-  // Added 'fromJson' method
-factory CompanyInfo.fromJson(Map<String, dynamic> data) => CompanyInfo(
-  name: data['name'] as String,
-  ceo: data['ceo'] as String,
-  employees: data['employees'] as int,
-  launchVehicles: data['launchVehicles'] as String,
-  headquarters: data['headquarters'] as String,
-  links: Links.fromJson(data['links'] as Map<String, dynamic>),
-);
+        'name': name,
+        'ceo': ceo,
+        'foundedYear': foundedYear,
+        'employees': employees,
+        'launchVehicles': launchVehicles,
+        'headquarters': headquarters,
+        'links': links?.toJson(),
+      };
 }
 
 class Links {
-  final String website;
-  final String flickr;
-  final String twitter;
-  final String wikipedia;
+  final String? website;
+  final String? flickr;
+  final String? twitter;
+  final String? wikipedia;
 
   Links({
-    required this.website,
-    required this.flickr,
-    required this.twitter,
-    required this.wikipedia,
+    this.website,
+    this.flickr,
+    this.twitter,
+    this.wikipedia,
   });
 
-  Map<String, dynamic> toJson() => {
-    'website': website,
-    'flickr': flickr,
-    'twitter': twitter,
-    'wikipedia': wikipedia,
-  };
-
-  // Existing 'fromJson' method
-  factory Links.fromJson(Map<String, dynamic> data) => Links(
-        website: data['website'] as String,
-        flickr: data['flickr'] as String,
-        twitter: data['twitter'] as String,
-        wikipedia: data['wikipedia'] as String,
+  factory Links.fromJson(Map<String, dynamic>? data) => Links(
+        website: data?['website'] as String?,
+        flickr: data?['flickr'] as String?,
+        twitter: data?['twitter'] as String?,
+        wikipedia: data?['wikipedia'] as String?,
       );
+
+  Map<String, dynamic> toJson() => {
+        'website': website,
+        'flickr': flickr,
+        'twitter': twitter,
+        'wikipedia': wikipedia,
+      };
 }
 
 class Ship {
-  final String name;
-  final String model;
-  final String role;
-  final bool active;
-  final int firstLaunchYear;
-  final Links links;
+  final String? name;
+  final String? model;
+  final String? role;
+  final bool? active;
+  final int? firstLaunchYear;
+  final Links? links;
 
   Ship({
-    required this.name,
-    required this.model,
-    required this.role,
-    required this.active,
-    required this.firstLaunchYear,
-    required this.links,
+    this.name,
+    this.model,
+    this.role,
+    this.active,
+    this.firstLaunchYear,
+    this.links,
   });
 
-  Map<String, dynamic> toJson() => {
-    'name': name,
-    'model': model,
-    'role': role,
-    'active': active,
-    'firstLaunchYear': firstLaunchYear,
-    'links': links.toJson(),
-  };
-
-  // Added 'fromJson' method
   factory Ship.fromJson(Map<String, dynamic> data) => Ship(
-        name: data['name'] as String,
-        model: data['model'] as String,
-        role: data['role'] as String,
-        active: data['active'] as bool,
-        firstLaunchYear: data['firstLaunchYear'] as int,
-        links: Links.fromJson(data['links'] as Map<String, dynamic>),
+        name: data['name'] as String?,
+        model: data['model'] as String?,
+        role: data['role'] as String?,
+        active: data['active'] as bool?,
+        firstLaunchYear: data['firstLaunchYear'] as int?,
+        links: Links.fromJson(data['links'] as Map<String, dynamic>?),
       );
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'model': model,
+        'role': role,
+        'active': active,
+        'firstLaunchYear': firstLaunchYear,
+        'links': links?.toJson(),
+      };
 }
