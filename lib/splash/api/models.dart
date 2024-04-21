@@ -1,7 +1,7 @@
 class CompanyInfo {
   final String? name;
   final String? ceo;
-  final int? foundedYear;
+  final int? founded;
   final int? employees;
   final String? launchVehicles;
   final String? headquarters;
@@ -10,7 +10,7 @@ class CompanyInfo {
   CompanyInfo({
     this.name,
     this.ceo,
-    this.foundedYear,
+    this.founded,
     this.employees,
     this.launchVehicles,
     this.headquarters,
@@ -20,7 +20,7 @@ class CompanyInfo {
   factory CompanyInfo.fromJson(Map<String, dynamic> data) => CompanyInfo(
         name: data['name'] as String?,
         ceo: data['ceo'] as String?,
-        foundedYear: data['foundedYear'] as int?,
+        founded: data['founded'] as int?,
         employees: data['employees'] as int?,
         launchVehicles: data['launchVehicles'] as String?,
         headquarters: data['hq_location'] as String?,  // Assuming 'hq_location' is the correct key
@@ -30,7 +30,7 @@ class CompanyInfo {
   Map<String, dynamic> toJson() => {
         'name': name,
         'ceo': ceo,
-        'foundedYear': foundedYear,
+        'founded': founded,
         'employees': employees,
         'launchVehicles': launchVehicles,
         'headquarters': headquarters,

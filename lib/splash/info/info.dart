@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:test/splash/constants/colors.dart';
+import 'package:test/splash/info/constants/colors.dart';
 
 class CompanyInfo extends StatelessWidget {
   const CompanyInfo({Key? key}) : super(key: key);

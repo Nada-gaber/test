@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:test/api/testapi.dart';
-import 'package:test/splash/constants/colors.dart';
+import 'package:test/splash/api/testapi.dart';
+import 'package:test/splash/info/constants/colors.dart';
 import 'package:test/splash/home_page.dart';
 
 class SplashScreen extends StatefulWidget {

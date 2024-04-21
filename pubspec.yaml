@@ -28,6 +28,7 @@ dev_dependencies:
     sdk: flutter
   flutter_native_splash: 
   flutter_lints: ^3.0.0
+  json_serializable:
   build_runner: ^2.4.9
 
 

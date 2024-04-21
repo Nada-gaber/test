@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/ships/details.dart';
+import 'package:test/splash/ships/details.dart';
 
 class Ships extends StatelessWidget {
   const Ships({Key? key}) : super(key: key);

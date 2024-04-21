@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test/api/api_service.dart';
-import 'package:test/api/models.dart';
+import 'package:test/splash/api/api_service.dart';
+import 'package:test/splash/api/models.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(fontSize: 24.0),
                   ),
                   Text('CEO: ${companyInfo.ceo ?? 'N/A'}'),
-                  Text('Founded: ${companyInfo.foundedYear ?? 'Unknown'}'),
+                  Text('Founded: ${companyInfo.founded}'),
                   // ... Add more widgets to display other info
                 ],
               );

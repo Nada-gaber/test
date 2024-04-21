@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test/api/api_service.dart';
-import 'package:test/api/testapi.dart';
-import 'package:test/ships/ships.dart';
+import 'package:test/splash/api/api_service.dart';
+import 'package:test/splash/api/testapi.dart';
+import 'package:test/splash/ships/ships.dart';
 
 void main()  {
   // try {async
