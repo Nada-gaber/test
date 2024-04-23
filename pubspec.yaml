@@ -21,6 +21,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_launcher_icons: ^0.13.1
   font_awesome_flutter: ^10.7.0
+  bloc: ^8.1.4
 
 
 dev_dependencies:
@@ -30,6 +31,8 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   json_serializable:
   build_runner: ^2.4.9
+  retrofit_generator:  
+
 
 
 

@@ -1,4 +1,4 @@
-class CompanyInfo {
+class CompanyInfor {
   final String? name;
   final String? ceo;
   final int? founded;
@@ -7,7 +7,7 @@ class CompanyInfo {
   final String? headquarters;
   final Links? links;
 
-  CompanyInfo({
+  CompanyInfor({
     this.name,
     this.ceo,
     this.founded,
@@ -17,7 +17,7 @@ class CompanyInfo {
     this.links,
   });
 
-  factory CompanyInfo.fromJson(Map<String, dynamic> data) => CompanyInfo(
+  factory CompanyInfor.fromJson(Map<String, dynamic> data) => CompanyInfor(
         name: data['name'] as String?,
         ceo: data['ceo'] as String?,
         founded: data['founded'] as int?,

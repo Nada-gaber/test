@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
         title: Text('SpaceX Company Info'),
       ),
       body: Center(
-        child: FutureBuilder<CompanyInfo?>(
+        child: FutureBuilder<CompanyInfor?>(
           future: getCompanyInfo(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {

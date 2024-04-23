@@ -3,12 +3,12 @@ import 'package:dio/dio.dart';
 
 final dio = Dio();
 
-Future<CompanyInfo?> getCompanyInfo() async {
+Future<CompanyInfor?> getCompanyInfo() async {
   try {
     final response = await dio.get('https://api.spacexdata.com/v4/company');
     if (response.statusCode == 200) {
       final data = response.data as Map<String, dynamic>;
-      return CompanyInfo.fromJson(data);
+      return CompanyInfor.fromJson(data);
     } else {
       throw Exception('Failed to load company info: ${response.statusCode}');
     }
