@@ -22,6 +22,12 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   font_awesome_flutter: ^10.7.0
   bloc: ^8.1.4
+  json_serializable: ^6.7.1
+  json_annotation: ^4.8.1
+  flutter_bloc: ^8.1.5
+  get_it: ^7.6.4
+  freezed: ^2.4.5
+  freezed_annotation: ^2.4.1
 
 
 dev_dependencies:
@@ -29,9 +35,7 @@ dev_dependencies:
     sdk: flutter
   flutter_native_splash: 
   flutter_lints: ^3.0.0
-  json_serializable:
   build_runner: ^2.4.9
-  retrofit_generator:  
 
 
 
