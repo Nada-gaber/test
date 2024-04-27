@@ -19,10 +19,31 @@ class ShipsListView extends StatefulWidget {
 }
 
 class _ShipsListViewState extends State<ShipsListView> {
+  bool _isSearchBarActive = false;
+  String _searchTerm = '';
+
   @override
   void initState() {
     super.initState();
     cubit.fetchShips();
+  }
+
+  void _handleSearchClick() {
+    setState(() {
+      _isSearchBarActive = !_isSearchBarActive;
+      if (!_isSearchBarActive) {
+        _searchTerm = '';
+        cubit.fetchShips();
+      }
+    });
+  }
+
+  void _handleSearchChange(String value) {
+    setState(() {
+      _searchTerm = value;
+
+      cubit.fetchShips(searchTerm: _searchTerm);
+    });
   }
 
   @override
@@ -31,40 +52,66 @@ class _ShipsListViewState extends State<ShipsListView> {
       create: (context) => cubit,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('SpaceX Ships'),
+          title: _isSearchBarActive
+              ? TextField(
+                  decoration: const InputDecoration(
+                    hintText: 'Search Ships...',
+                  ),
+                  onChanged: _handleSearchChange,
+                )
+              : const Text('SpaceX Ships'),
+          actions: [
+            IconButton(
+              icon: Icon(_isSearchBarActive ? Icons.close : Icons.search),
+              onPressed: _handleSearchClick,
+            ),
+          ],
         ),
         body: BlocBuilder<ShipsCubit, ShipsState>(
           builder: (context, state) {
             if (state is ShipsInitial) {
               return const Center(
-                  child: CircularProgressIndicator(
-                color: Colors.amber,
-              ));
+                child: CircularProgressIndicator(
+                  color: Colors.amber,
+                ),
+              );
             } else if (state is ShipsLoading) {
               return const Center(
-                  child: CircularProgressIndicator(
-                color: Colors.red,
-              ));
+                child: CircularProgressIndicator(
+                  color: Colors.red,
+                ),
+              );
             } else if (state is ShipsLoaded) {
               final ships = state.ships;
+              final filteredShips = _searchTerm.isEmpty
+                  ? ships
+                  : ships
+                      .where((ship) =>
+                          ship.name
+                              ?.toLowerCase()
+                              .contains(_searchTerm.toLowerCase()) ??
+                          false)
+                      .toList();
               return ListView.builder(
-                itemCount: ships.length,
+                itemCount: filteredShips.length,
                 itemBuilder: (context, index) {
-                  final ship = ships[index];
+                  final ship = filteredShips[index];
                   return shipContainer(
-                      context,
-                      ship.image ?? 'https://i.imgur.com/woCxpkj.jpg',
-                      ship.name ?? 'No Name',
-                      ship.yearBuilt ?? 00,
-                      ship.massKg ?? 00,
-                      ship.type ?? 'Not Definded');
+                    context,
+                    ship.image ?? 'https://i.imgur.com/woCxpkj.jpg',
+                    ship.name ?? 'No Name',
+                    ship.yearBuilt ?? 00,
+                    ship.massKg ?? 00,
+                    ship.type ?? 'Not Definded',
+                  );
                 },
               );
             } else if (state is ShipsError) {
               return Center(child: Text('Error: ${state.error}'));
             } else {
               return Text(
-                  'Unexpected state: $state'); // Handle unexpected states
+                'Unexpected state: $state', 
+              );
             }
           },
         ),
@@ -73,61 +120,3 @@ class _ShipsListViewState extends State<ShipsListView> {
   }
 }
 
-    
-    //  BlocProvider<ShipsCubit>(
-    //     create: (context) => cubit,
-    //     child: SizedBox(
-    //       height: MediaQuery.of(context).size.height / 5.5,
-    //       child: BlocBuilder<ShipsCubit, ApiState<Ships>>(
-    //         builder: (context, state) {
-    //           if (state is Success<List<Ships>>) {
-    //             final List<Ships> allShips = state as List<Ships>;
-                
-    //             return ListView.builder(
-    //               itemBuilder: (context, index) {
-    //                 return shipContainer(context, allShips[index].image.toString(),
-    //                     allShips[index].name.toString());
-    //               },
-    //             );
-    //           } else if (state is Error<Ships>) {
-    //             return const CircularProgressIndicator(
-    //               color: Colors.red,
-    //             );
-    //           } else if (state is Loading<Ships>) {
-    //             return const CircularProgressIndicator(
-    //               color: Colors.amber,
-    //             );
-    //           } else if (state is Initial<Ships>) {
-    //             return const CircularProgressIndicator(
-    //               color: Colors.purple,
-    //             );
-    //           } else {
-    //             return Text('no data');
-    //           }
-    //         },
-    //       ),
-    //     ));
-//   }
-// }
-
-// import 'package:bloc/bloc.dart';
-// import 'package:test/core/states/api_states.dart';
-// import 'package:test/features/ships/data/repo/ships_repo.dart';
-
-// import '../model/ships_model.dart';
-
-// class ShipsCubit extends Cubit<ApiState<Ships>> {
-//   final ShipsRepository shipsRepository;
-
-//   ShipsCubit({required this.shipsRepository}) : super(const Initial<Ships>());
-
-//   Future<void> fetchShips() async {
-//     emit(const Loading<Ships>());
-//     try {
-//       final ships = await shipsRepository.fetchAllShips();
-//       emit(Success<Ships>(ships as Ships));
-//     } on Exception catch (error) {
-//       emit(Error<Ships>(error.toString()));
-//     }
-//   }
-// }
