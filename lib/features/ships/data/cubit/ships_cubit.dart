@@ -29,7 +29,7 @@ class ShipsCubit extends Cubit<ShipsState> {
 
   ShipsCubit(this._repository) : super(ShipsInitial());
 
-  Future<void> fetchShips() async {
+  Future<void> fetchShips({String searchTerm = ''}) async {
     emit(ShipsLoading());
     try {
       final ships = await _repository.getShips();
@@ -39,25 +39,3 @@ class ShipsCubit extends Cubit<ShipsState> {
     }
   }
 }
-
-// import 'package:bloc/bloc.dart';
-// import 'package:test/core/states/api_states.dart';
-// import 'package:test/features/ships/data/repo/ships_repo.dart';
-
-// import '../model/ships_model.dart';
-
-// class ShipsCubit extends Cubit<ApiState<Ships>> {
-//   final ShipsRepository shipsRepository;
-
-//   ShipsCubit({required this.shipsRepository})
-//       : super(const Initial<Ships>());
-
-//   Future<void> fetchShips() async {
-//     emit(const Loading<Ships>());
-//     try {
-//       final ships = await shipsRepository.fetchAllShips();
-//       emit(Success<Ships>(ships));
-//     } on Exception catch (error) {
-//       emit(Error<Ships>(error.toString()));
-//     }
-//   }  }
