@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test/features/company_info/company_info_screen.dart';
 import 'package:test/features/ships/ui/test.dart';
 
 void main() {
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:ShipsListView(),
+      home: ShipsListView(),
     );
   }
 }
