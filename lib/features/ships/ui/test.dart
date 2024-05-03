@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test/core/web%20services/web_services.dart';
 import 'package:test/features/ships/data/cubit/ships_cubit.dart';
+import 'package:test/features/ships/data/cubit/ships_state.dart';
 import 'package:test/features/ships/data/repo/ships_repo.dart';
 import 'package:test/features/ships/ui/widgets/ship_container.dart';
 
@@ -96,7 +97,9 @@ class _ShipsListViewState extends State<ShipsListView> {
                 itemCount: filteredShips.length,
                 itemBuilder: (context, index) {
                   final ship = filteredShips[index];
-                  return shipContainer(
+                  return 
+                  
+                  shipContainer(
                     context,
                     ship.image ?? 'https://i.imgur.com/woCxpkj.jpg',
                     ship.name ?? 'No Name',
@@ -110,7 +113,7 @@ class _ShipsListViewState extends State<ShipsListView> {
               return Center(child: Text('Error: ${state.error}'));
             } else {
               return Text(
-                'Unexpected state: $state', 
+                'Unexpected state: $state',
               );
             }
           },
@@ -119,4 +122,3 @@ class _ShipsListViewState extends State<ShipsListView> {
     );
   }
 }
-

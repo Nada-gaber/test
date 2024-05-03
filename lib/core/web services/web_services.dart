@@ -17,3 +17,6 @@ abstract class WebServices {
   @GET('/ships')
   Future<List<Ships>> getAllShips();
 }
+
+  // @GET(ApiConstants.companyInfo)
+  // Future<CompanyInfo> getCompanyInfo();

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test/core/states/api_states.dart';
 import 'package:test/features/company_info/cubit/company_cubit.dart';
+import 'package:test/features/company_info/cubit/states.dart';
 import 'package:test/features/company_info/repo/repo.dart';
 import 'package:test/features/company_info/widgets/appbar.dart';
 import 'package:test/features/company_info/widgets/buildin.dart';
@@ -11,11 +12,11 @@ import 'package:test/features/company_info/widgets/icon.dart';
 import '../../core/web services/web_services.dart';
 import 'model/companyinfo_model.dart';
 
+
 Dio dio = Dio();
 WebServices webServices = WebServices(dio);
 CompanyRepository companyRepository = CompanyRepository(webServices);
-final cubit = CompanyCubit(companyRepository: companyRepository);
-
+final cubit = CompanyCubit(companyRepository);
 class CompanyInfoScreen extends StatefulWidget {
   const CompanyInfoScreen({super.key});
 
@@ -34,30 +35,30 @@ class _CompanyInfoScreenState extends State<CompanyInfoScreen> {
   Widget build(BuildContext context) {
     return BlocProvider<CompanyCubit>(
       create: (context) => cubit,
-      child: BlocConsumer<CompanyCubit, ApiState<CompanyInfo>>(
+      child: BlocConsumer<CompanyCubit, CompanyInfoState>(
         listener: (context, state) {
           if (state is Error<CompanyInfo>) {
-            final errorState = state; // Cast to Error<CompanyInfo>
+            final errorState = state; 
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Error: ${errorState.error}'),
+                content: Text('Error: $errorState'),
               ),
             );
           }
         },
         builder: (context, state) {
-          if (state is Initial<CompanyInfo>) {
+          if (state is CompanyInitial) {
             return const Center(
                 child: CircularProgressIndicator(
                     backgroundColor: Color.fromARGB(255, 63, 132, 230),
                     color: Colors.red));
-          } else if (state is Loading<CompanyInfo>) {
+          } else if (state is CompanyLoading) {
             return const Center(
                 child: CircularProgressIndicator(
                     backgroundColor: Color.fromARGB(255, 118, 158, 214),
                     color: Colors.amber));
-          } else if (state is Success<CompanyInfo>) {
-            final companyInfo = state.data;
+          } else if (state is CompanyLoaded) {
+            final companyInfo = state.companyInfo;
             return Scaffold(
               backgroundColor: const Color(0xff061428),
               appBar: companyInfoAppBar(context),

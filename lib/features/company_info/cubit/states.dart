@@ -1,22 +1,21 @@
-// import 'package:test/core/states/base_states.dart';
-// import '../model/companyinfo_model.dart';
+import 'package:meta/meta.dart';
+import '../model/companyinfo_model.dart';
 
-// class CompanyInfoSuccess extends BaseApiState {
-//   final CompanyInfo companyInfo;
-//   const CompanyInfoSuccess(this.companyInfo);
-// }
+@immutable
+abstract class CompanyInfoState {}
 
+class CompanyInitial extends CompanyInfoState {}
 
-// import 'package:freezed_annotation/freezed_annotation.dart';
+class CompanyLoading extends CompanyInfoState {}
 
-// import '../model/companyinfo_model.dart';
+class CompanyLoaded extends CompanyInfoState {
+    final CompanyInfo companyInfo;
 
-// part 'states.freezed.dart';
+  CompanyLoaded(this.companyInfo);
+}
 
-// @freezed
-// abstract class CompanyInfoState with _$CompanyInfoState {
-//   const factory CompanyInfoState.initial() = Initial;
-//   const factory CompanyInfoState.loading() = Loading;
-//   const factory CompanyInfoState.success(CompanyInfo companyInfo) = Success;
-//   const factory CompanyInfoState.error(String error) = Error;
-// }
+class CompanyError extends CompanyInfoState {
+  final String error;
+
+  CompanyError(this.error);
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:test/features/ships/ui/ship_detail.dart';
 
 shipContainer(BuildContext context, String shipImage, String shipName,
@@ -32,24 +33,59 @@ containerShipDesign(BuildContext context, String shipImage, String shipName) {
   return Container(
     height: MediaQuery.of(context).size.height / 4,
     decoration: BoxDecoration(
-      color: Colors.red,
       borderRadius: BorderRadius.circular(10),
       boxShadow: const [
         BoxShadow(
           spreadRadius: -5.0,
-          blurRadius: 7.0,
+          blurRadius: 6.0,
         ),
       ],
-      image: DecorationImage(fit: BoxFit.fill, image: NetworkImage(shipImage)),
     ),
-    child: Align(
-      alignment: Alignment.bottomLeft,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
-        child: Text(
-          shipName,
-          style: const TextStyle(color: Colors.white),
-        ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Stack(
+        children: [
+          Shimmer(
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xFFEBEBF4),
+                Color(0xFFF4F4F4),
+                Color(0xFFEBEBF4),
+              ],
+              stops: [
+                0.1,
+                0.3,
+                0.4,
+              ],
+              begin: Alignment(-1.0, -0.3),
+              end: Alignment(1.0, 0.3),
+              tileMode: TileMode.clamp,
+            ),
+            child: Container(
+              color: Colors.grey[200],
+            ),
+          ),
+          if (shipImage.isNotEmpty)
+            Container(
+              height: MediaQuery.of(context).size.height / 4,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.fill, image: NetworkImage(shipImage)),
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                  child: Text(
+                    shipName,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     ),
   );
