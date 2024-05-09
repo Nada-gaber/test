@@ -31,6 +31,9 @@ dependencies:
   freezed_annotation: ^2.4.1
  
   shimmer: ^3.0.0
+  flutter_translate: ^4.0.4
+  flutter_localizations:
+    sdk: flutter
 
 
 dev_dependencies:
